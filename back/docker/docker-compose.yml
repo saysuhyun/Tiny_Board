@@ -1,0 +1,22 @@
+services:
+  mysql-db:
+    image: mysql:5.7
+    restart: always
+    platform: linux/amd64 #m1에서도 쓸 수 있도록 추가
+    environment:
+      MYSQL_ROOT_PASSWORD: tiny1!
+      MYSQL_DATABASE: tiny-db
+      MYSQL_USER: tiny-user
+      MYSQL_PASSWORD: tiny1!
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_data:
+
+networks:
+  mysql_network:
